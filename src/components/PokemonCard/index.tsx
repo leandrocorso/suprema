@@ -20,6 +20,7 @@ export const PokemonCard = () => {
           style={{ maxWidth: "100%", height: "auto" }}
           width={256}
           height={256}
+          priority
         />
         <div className="data-wrapper">
           <Abilities />
