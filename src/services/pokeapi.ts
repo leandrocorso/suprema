@@ -1,37 +1,53 @@
+import {
+  PokemonAbilitiesProps,
+  PokemonLangProps,
+  PokemonListProps,
+  PokemonSpeciesProps,
+  PokemonTypesProps,
+} from "@/types/Pokemon";
+
 const baseUrl = "https://pokeapi.co/api/v2";
 const lang = "en";
 
 export const getPokemons = async () => {
   const url = `${baseUrl}/pokemon?offset=0&limit=4`;
   const result = await fetch(url);
-  const pokemons = await result.json();
+  const pokemons: PokemonListProps = await result.json();
 
   // Abilities (poderes)
-  const getAbilities = async (abilities) => {
+  const getAbilities = async (abilities: PokemonAbilitiesProps[]) => {
     const data = abilities.map(async (item) => {
       const { names } = await getPokemonData(item.ability.url);
-      const abilityNames = names.filter((n) => n.language.name === lang);
+      const abilityNames = names.filter(
+        (n: PokemonLangProps) => n.language.name === lang
+      );
       return Object.assign(item.ability, { label: abilityNames[0].name });
     });
     return await Promise.all(data);
   };
 
   // Types (elementos)
-  const getTypes = async (types) => {
+  const getTypes = async (types: PokemonTypesProps[]) => {
     const data = types.map(async (item) => {
       const { names } = await getPokemonData(item.type.url);
-      const typeNames = names.filter((n) => n.language.name === lang);
+      const typeNames = names.filter(
+        (n: PokemonLangProps) => n.language.name === lang
+      );
       return Object.assign(item.type, { label: typeNames[0].name });
     });
     return await Promise.all(data);
   };
 
   // Species: name | genus | color (nome | raça | cor)
-  const getSpecies = async (species) => {
+  const getSpecies = async (species: PokemonSpeciesProps) => {
     const { names, genera, color } = await getPokemonData(species.url);
 
-    const speciesNames = names.filter((n) => n.language.name === lang);
-    const generaNames = genera.filter((n) => n.language.name === lang);
+    const speciesNames = names.filter(
+      (n: PokemonLangProps) => n.language.name === lang
+    );
+    const generaNames = genera.filter(
+      (n: PokemonLangProps) => n.language.name === lang
+    );
     return Object.assign(species, {
       label: speciesNames[0].name,
       genus: generaNames[0].genus,
