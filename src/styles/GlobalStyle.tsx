@@ -41,4 +41,25 @@ export const GlobalStyle = createGlobalStyle`
   h5, h6 {
     font-size: ${({ theme }) => theme.fonts.size.h5};
   }
+
+  a {
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
+  }
+
+  main {
+    margin: 0 auto;
+    padding: ${({ theme }) => theme.spacing.md};
+    padding-top: 0;
+  }
+
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  
 `;
