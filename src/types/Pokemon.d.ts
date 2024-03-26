@@ -27,8 +27,21 @@ export type PokemonTypesProps = {
   type: {
     label: string;
     name: string;
-    url: URL;
+    url: string;
   };
+};
+
+export type PokemonLangProps = {
+  language: {
+    name: string;
+    url: string;
+  };
+  name: string;
+};
+
+export type PokemonListProps = {
+  next: string;
+  results: { name: string; url: string }[];
 };
 
 export type PokemonProps = {
