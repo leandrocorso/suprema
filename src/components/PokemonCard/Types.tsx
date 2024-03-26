@@ -1,30 +1,30 @@
 import Image from "next/image";
-import classNames from "classnames";
+import { nanoid } from "nanoid";
 
-import { StyledTypes } from "./types.style";
+import { PokemonTypesProps } from "@/types/Pokemon";
 
-export const Types = () => {
+import { StyledTypes, StyledTypesItem } from "./style";
+
+export const Types = ({ types }: { types: PokemonTypesProps[] }) => {
   return (
     <StyledTypes>
       <h5 className="title">Elementos</h5>
       <ul className="list">
-        <li className={classNames("item", "grass")}>
-          <span>
-            <Image src="/icons/grass.svg" alt="Grass" width={20} height={20} />
-            <span>Grass</span>
-          </span>
-        </li>
-        <li className={classNames("item", "poison")}>
-          <span>
-            <Image
-              src="/icons/poison.svg"
-              alt="Poison"
-              width={20}
-              height={20}
-            />
-            <span>Poison</span>
-          </span>
-        </li>
+        {types.map(({ type }) => {
+          return (
+            <StyledTypesItem key={nanoid()} type={type.name}>
+              <span>
+                <Image
+                  src={`/icons/${type.name}.svg`}
+                  alt={type.label}
+                  width={20}
+                  height={20}
+                />
+                <span>{type.label}</span>
+              </span>
+            </StyledTypesItem>
+          );
+        })}
       </ul>
     </StyledTypes>
   );

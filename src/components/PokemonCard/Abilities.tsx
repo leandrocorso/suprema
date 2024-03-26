@@ -1,17 +1,26 @@
 import classNames from "classnames";
+import { nanoid } from "nanoid";
+
+import { PokemonAbilitiesProps } from "@/types/Pokemon";
+
 import { EyeBlocked } from "@/components/Icons";
+import { StyledAbilities } from "./style";
 
-import { StyledAbilities } from "./abilities.style";
-
-export const Abilities = () => {
+export const Abilities = ({
+  abilities,
+}: {
+  abilities: PokemonAbilitiesProps[];
+}) => {
   return (
     <StyledAbilities>
       <h5>Poderes</h5>
       <ul className="list">
-        <li className={classNames("item")}>Poder 1</li>
-        <li className={classNames("item", "isHidden")}>
-          Poder 2 <EyeBlocked title="Habilidade oculta" />
-        </li>
+        {abilities.map(({ ability, is_hidden }) => (
+          <li key={nanoid()} className={classNames("item", { is_hidden })}>
+            {ability.label}
+            {is_hidden && <EyeBlocked title="Habilidade oculta" />}
+          </li>
+        ))}
       </ul>
     </StyledAbilities>
   );
