@@ -27,8 +27,9 @@ export default function Home() {
 
           <div className="pokemons">
             {isError && <p>Ocorreu um erro</p>}
-            {isLoading && <p>Carregando</p>}
-            {pokemonList && <PokemonList pokemons={pokemonList} />}
+            {pokemonList && (
+              <PokemonList pokemons={pokemonList} isLoading={isLoading} />
+            )}
           </div>
         </div>
       </main>
