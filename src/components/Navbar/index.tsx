@@ -11,7 +11,8 @@ export const Navbar = () => {
   const pathname = usePathname();
 
   const routes = {
-    "/": "Pokémons",
+    "/": "Home",
+    "/abilities": "Poderes",
     "/contact": "Contato",
   };
 
@@ -19,7 +20,10 @@ export const Navbar = () => {
     <StyledNavbar>
       <ul>
         {Object.keys(routes).map((route: string) => {
-          const current = route === pathname;
+          const stringpath = route.replace("/", "");
+          const pathArray = pathname.split("/").filter((p) => p);
+          const current = pathname === route || pathArray.includes(stringpath);
+
           return (
             <li key={nanoid()} className={classNames({ "is-active": current })}>
               <Link href={route}>{routes[route as keyof typeof routes]}</Link>
