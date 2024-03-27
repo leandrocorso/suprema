@@ -9,8 +9,8 @@ import {
 const baseUrl = "https://pokeapi.co/api/v2";
 const lang = "en";
 
-export const getPokemons = async () => {
-  const url = `${baseUrl}/pokemon?offset=0&limit=4`;
+export const getPokemons = async (offset: number = 0, limit: number = 4) => {
+  const url = `${baseUrl}/pokemon?offset=${offset}&limit=${limit}`;
   const result = await fetch(url);
   const pokemons: PokemonListProps = await result.json();
 
