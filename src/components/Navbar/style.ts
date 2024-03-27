@@ -5,7 +5,8 @@ export const StyledNavbar = styled.nav`
 
   ul {
     list-style: none;
-    display: inline-flex;
+    display: flex;
+    justify-content: center;
     gap: ${({ theme }) => theme.spacing.lg};
     height: 100%;
   }
