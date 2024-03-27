@@ -7,13 +7,22 @@ export const StyledPokemonCard = styled.div<{
   max-width: 300px;
   padding: ${({ theme }) => theme.spacing.xxs};
   border-radius: ${({ theme }) => theme.spacing.lg};
-  color: ${({ theme }) => theme.colors.white};
+  color: ${({ theme, color }) => {
+    return color === "white"
+      ? theme.colors.semantic.default
+      : theme.colors.white;
+  }};
   background-color: ${({ theme, color }) => theme.colors.pokemon[`${color}`]};
+  border: ${({ theme, color }) => {
+    return color === "white" ? `1px solid ${theme.colors.lightgray}` : "none";
+  }};
 
   .heading {
     padding-left: ${({ theme }) => theme.spacing.md};
     padding-right: ${({ theme }) => theme.spacing.md};
     margin-bottom: ${({ theme }) => theme.spacing.md};
+    text-shadow: ${({ color }) =>
+      color !== "white" && `1px 1px rgba(0, 0, 0, 0.2)`};
   }
 
   .content {
