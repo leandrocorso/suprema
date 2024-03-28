@@ -1,9 +1,11 @@
+export type PokemonAbilityProps = {
+  label: string;
+  name: string;
+  url: string;
+};
+
 export type PokemonAbilitiesProps = {
-  ability: {
-    label: string;
-    name: string;
-    url: string;
-  };
+  ability: PokemonAbilityProps;
   is_hidden: boolean;
 };
 
@@ -35,7 +37,9 @@ export type PokemonLangProps = {
   language: {
     name: string;
     url: string;
+    genus: string;
   };
+  genus: string;
   name: string;
 };
 

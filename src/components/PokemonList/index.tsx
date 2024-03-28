@@ -1,13 +1,13 @@
 import { PokemonCard } from "@/components/PokemonCard";
 import { Loading } from "@/components/Loading";
 
-import { StyledPokemonListWrapper, StyledPokemonList } from "./style";
+import { StyledPokemonList, StyledPokemonListWrapper } from "./style";
 import { PokemonProps } from "@/types/Pokemon";
 import { nanoid } from "nanoid";
 
 export const PokemonList = ({
   pokemons,
-  isLoading,
+  isLoading = false,
 }: {
   pokemons: PokemonProps[];
   isLoading: boolean;

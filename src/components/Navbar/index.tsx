@@ -21,8 +21,11 @@ export const Navbar = () => {
       <ul>
         {Object.keys(routes).map((route: string) => {
           const stringpath = route.replace("/", "");
-          const pathArray = pathname.split("/").filter((p) => p);
-          const current = pathname === route || pathArray.includes(stringpath);
+          let current = false;
+          if (pathname) {
+            const pathArray = pathname.split("/").filter((p) => p);
+            current = pathname === route || pathArray.includes(stringpath);
+          }
 
           return (
             <li key={nanoid()} className={classNames({ "is-active": current })}>
